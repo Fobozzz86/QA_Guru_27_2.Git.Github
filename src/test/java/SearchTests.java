@@ -18,7 +18,7 @@ public class SearchTests {
         Configuration.pageLoadStrategy = "eager";
         open("https://www.google.com/");
         $("[name=q]").setValue("selenide").pressEnter();
-        $("#search").shouldHave(text("https://ru.selenide.org"));
+        $("#search").should(text("https://ru.selenide.org"));
         //       sleep(600_000); //Это для не закрытия браузера после теста
     }
 

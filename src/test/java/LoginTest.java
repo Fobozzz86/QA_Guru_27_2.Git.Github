@@ -17,7 +17,7 @@ public class LoginTest {
         //     Ввести пароль
         $("[name=password]").setValue("33p4AC&A").pressEnter();
         //     Проверить успешную авторизацию
-        $("[class=page-header]").shouldHave(text("Список тренингов"));
+        $(".page-header").should(text("Список тренингов"));
 
     }
 
@@ -26,7 +26,7 @@ public class LoginTest {
         //     Открыть страницу приветствия https://qa.guru/cms/system/login
         open("https://school.qa.guru/cms/system/login");
         //     Проверить успешную авторизацию аккаунтом
-        $(".logined-form").shouldHave(text("Здравствуйте, Artur"));
+        $(".logined-form").should(text("Здравствуйте, Artur"));
 
         Selenide.closeWebDriver();
     }
@@ -39,7 +39,7 @@ public class LoginTest {
         //     Ввести пароль
         $("[name=password]").setValue("33p4AC&Artrt").pressEnter();
         //     Проверить не удачную авторизацию с неверным паролем
-        $(".btn-error").shouldHave(text("Неверный пароль"));
+        $(".btn-error").should(text("Неверный пароль"));
 
         Selenide.closeWebDriver();
     }
@@ -51,7 +51,7 @@ public class LoginTest {
         //     Нажать на Вход
         $(".btn-success").pressEnter();
         //     Проверить не удачную авторизацию с незаполненным логином
-        $(".btn-error").shouldHave(text("Не заполнено поле E-Mail"));
+        $(".btn-error").should(text("Не заполнено поле E-Mail"));
 
         //      sleep(600_000); //Это для не закрытия браузера после теста
     }

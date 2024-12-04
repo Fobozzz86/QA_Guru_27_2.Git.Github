@@ -1,5 +1,6 @@
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -7,10 +8,14 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class LoginTest {
 
-    void successfulLoginTest() {
-        // Конгфиг webdriver ждет, пока страница не будет полностью загружена
+    @BeforeAll
+    static void beforeAll() {
+        // Конфиг webdriver ждет, пока страница не будет полностью загружена
         Configuration.pageLoadStrategy = "eager";
-        //     Открыть форму авторизации https://school.qa.guru
+    }
+
+    void successfulLoginTest() {
+
         open("https://school.qa.guru");
         //     Ввести адрес электронной почты
         $("[name=email]").setValue("fobozzz@yandex.ru");
@@ -22,8 +27,6 @@ public class LoginTest {
     }
 
     void successfulLoginAkk() {
-        Configuration.pageLoadStrategy = "eager";
-        //     Открыть страницу приветствия https://qa.guru/cms/system/login
         open("https://school.qa.guru/cms/system/login");
         //     Проверить успешную авторизацию аккаунтом
         $(".logined-form").should(text("Здравствуйте, Artur"));
@@ -31,8 +34,6 @@ public class LoginTest {
         Selenide.closeWebDriver();
     }
     void negativeLoginTest() {
-        Configuration.pageLoadStrategy = "eager";
-        //     Открыть форму авторизации https://qa.guru/cms/system/login
         open("https://school.qa.guru");
         //     Ввести адрес электронной почты
         $("[name=email]").setValue("fobozzz@yandex.ru");
@@ -45,8 +46,6 @@ public class LoginTest {
     }
 
     void negativeEmptyLogin() {
-        Configuration.pageLoadStrategy = "eager";
-        //     Открыть форму авторизации https://qa.guru/cms/system/login
         open("https://school.qa.guru");
         //     Нажать на Вход
         $(".btn-success").pressEnter();
